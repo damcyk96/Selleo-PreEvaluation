@@ -16,9 +16,9 @@ const Stack = createNativeStackNavigator();
 function Home() {
   return (
     <Tab.Navigator
-      activeColor="#e91e63"
-      labelStyle={{fontSize: 12}}
-      style={{backgroundColor: 'tomato'}}>
+      activeColor="#ffffff"
+      labelStyle={style.navigatorFontSize}
+      style={style.navigator}>
       <Tab.Screen
         name="About"
         component={About}
@@ -59,3 +59,12 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+const style = StyleSheet.create({
+  navigator: {
+    backgroundColor: 'tomato',
+  },
+  navigatorFontSize: {
+    fontSize: 12,
+  },
+});

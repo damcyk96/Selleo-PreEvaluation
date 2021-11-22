@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
 import {List} from 'react-native-paper';
 import axios from 'axios';
 import {ActivityIndicator, Colors} from 'react-native-paper';
