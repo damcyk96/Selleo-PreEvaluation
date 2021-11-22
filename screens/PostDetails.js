@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {Card, Paragraph} from 'react-native-paper';
+import {ActivityIndicator, Colors} from 'react-native-paper';
+
 import axios from 'axios';
 
 const PostDetails = ({route}) => {
@@ -16,13 +19,19 @@ const PostDetails = ({route}) => {
   }, [itemId]);
   return (
     <SafeAreaView>
-      <Text>{post.id}</Text>
-      <Text>{post.title}</Text>
-      <Text>{post.body}</Text>
+      {post ? (
+        <Card>
+          <Card.Title title={post.title} />
+          <Card.Content>
+            <Paragraph>{post.id}</Paragraph>
+            <Paragraph>{post.body}</Paragraph>
+          </Card.Content>
+        </Card>
+      ) : (
+        <ActivityIndicator animating={true} color={Colors.red800} />
+      )}
     </SafeAreaView>
   );
 };
 
 export default PostDetails;
-
-const styles = StyleSheet.create({});

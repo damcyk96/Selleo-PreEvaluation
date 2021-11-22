@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, FlatList, Button} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {List} from 'react-native-paper';
 import axios from 'axios';
+import {ActivityIndicator, Colors} from 'react-native-paper';
+import {SafeAreaView} from 'react-native';
 
 const Posts = ({navigation}) => {
   const [posts, setPosts] = useState([]);
@@ -9,29 +12,27 @@ const Posts = ({navigation}) => {
     axios.get('https://jsonplaceholder.typicode.com/posts').then(response => {
       setPosts(response.data);
     });
+    console.log('dupa');
   }, []);
 
   return (
-    <View>
+    <SafeAreaView>
       {posts ? (
-        <FlatList
-          data={posts}
-          renderItem={({item}) => (
-            <Button
-              title={item.title}
-              onPress={() => {
-                navigation.push('PostDetails', {itemId: item.id});
-              }}
-            />
-          )}
-        />
+        posts.map(post => (
+          <List.Item
+            title={post.title}
+            key={post.id}
+            onPress={() => {
+              navigation.push('PostDetails', {itemId: post.id});
+            }}>
+            {posts.body}
+          </List.Item>
+        ))
       ) : (
-        <Text>Loading...</Text>
+        <ActivityIndicator animating={true} color={Colors.red800} />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default Posts;
-
-const styles = StyleSheet.create({});

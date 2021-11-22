@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {Button, View} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import {Provider as PaperProvider} from 'react-native-paper';
 import Navigation from './components/Navigation';
 
-export default function App() {
+const App = () => {
   return (
-    <>
+    <PaperProvider>
       <Navigation />
-    </>
+    </PaperProvider>
   );
-}
+};
+
+export default App;
